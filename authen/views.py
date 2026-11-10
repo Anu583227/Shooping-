@@ -1,10 +1,15 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,get_object_or_404
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login,logout
 from .models import ProfileModel
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 
 # Create your views here.
+
+def pro(request):
+    profile = get_object_or_404(ProfileModel,user_id = request.user)
+    return profile
 
 def login_(request):
     if request.method == 'POST':
@@ -13,12 +18,14 @@ def login_(request):
         user=authenticate(username=uname,password=pasw)
         if user:
             login(request,user)
+            messages.success(request,'Login Sucuessful ...!')
             return redirect('home')
         else:
+            messages.error(request,'Username and password wronge')
             return redirect('login_')
 
 
-    return render(request,'login_.html')
+    return render(request,'login_.html',{'new':True})
 
 def register(request):
     if request.method == 'POST':
@@ -44,16 +51,17 @@ def register(request):
         )
         print(pic_img.profile_img)
         print(pic_img.profile_img.name)
-    return render(request,'register.html')
+    return render(request,'register.html',{'new':True})
 
 def logout_(request):
     logout(request)
+    messages.success(request,'Logout Successfull')
     return redirect('login_')
 
 @login_required
 def profile(request):
     data = request.user
-    return render(request, 'profile.html', {'data': data})
+    return render(request, 'profile.html', {'data': data,'new':True})
 
 @login_required
 def update(request):
@@ -82,8 +90,73 @@ def update(request):
 
     return render(request, 'update.html', {
         'data': data,
-        'profile': profile
+        'profile': profile,
+        'new':True
     })
+
+# def forgot(request):
+#     if request.method=='POST':
+#         if 'uname' in request.POST:
+#             uname=request.POST['uname']
+#             if uname:
+#                 u=User.objects.get(username=uname)
+#                 return render(request,'forgot.html')
+#             else:
+#                 messages.error(request,'No user found')
+#                 return redirect('login_')
+#         if 'npasw' in request.POST:
+#             npasw=request.POST['npasw']
+#             u=User.objects.get(username=uname)
+#             u.set_password(npasw)
+#             u.save()
+#             return redirect('login_')
+            
+#     return render(request,'forgot.html')
+
+def forgot(request):
+    if request.method=='POST':
+        global user
+        if 'uname' in request.POST:
+            user=request.POST['uname']
+            try:
+                u=User.objects.get(username=user)
+                return render(request,'forgot.html')
+            except:
+                messages.error(request,'no user found')
+                return redirect('forgot')
+        if 'npasw' in request.POST:
+            npasw=request.POST['npasw']
+            u=User.objects.get(username=user)
+            u.set_password(npasw)
+            u.save()
+            messages.success(request,'Password reset succussful...!')
+            return redirect('login_')
+    return render(request,'forgot.html',{'new':True})
+
+def reset(request):
+    if request.method=='POST':
+        if 'opasw' in request.POST:
+            opasw=request.POST['opasw']
+            user=authenticate(username=request.user,password=opasw)
+            if user:
+                messages.success(request,'Enter new password')
+                return render(request,'reset.html',{'new':True})
+            else:
+                messages.error(request,'Enter old password wrong')
+                return redirect('reset')
+        if 'npasw' in request.POST:
+            npasw=request.POST['npasw']
+            cpasw=request.POST['cpasw']
+            if npasw != cpasw:
+                messages.error(request,'Enter new an confirm password is wrong')
+                return redirect('reset')
+            else:
+                user=User.objects.get(username=request.user)
+                user.set_password(npasw)
+                user.save()
+                return redirect('login_')
+    return render(request,'reset.html')
+
 
 
 

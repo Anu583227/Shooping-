@@ -1,0 +1,31 @@
+{% extends 'main.html' %}
+{% block con %}
+    <center>
+        <h1>Forgot password</h1>
+     {% if messages %}
+            {% for i in messages %}
+               <h2 style="color: red;">{{i}}</h2>
+            {% endfor %}
+    {% endif %}
+
+    <form action="" method="POST">
+    
+        {% csrf_token %}
+        {% if new %}
+        <label for="">Username</label>
+        <input type="text" name="uname" id=""> <br><br>
+        {% else %}
+
+        <!-- <label for="">Username</label>
+        <input type="text" id="" value=""> <br><br> -->
+
+        <label for="">New Password</label>
+        <input type="password" name="npasw" id=""> <br><br>
+        {% endif %}
+
+        <button type="submit">Set</button>
+    </form>
+    </center>
+
+
+{% endblock %}

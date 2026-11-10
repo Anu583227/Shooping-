@@ -1,0 +1,27 @@
+{% extends 'main.html' %}
+{% block con %}
+    
+     {% if messages %}
+            {% for i in messages %}
+               <h2 style="color: red;">{{i}}</h2>
+            {% endfor %}
+    {% endif %}
+    <center>
+        <h1>This is reset page</h1>
+        <form action="" method="POST">
+            {% csrf_token %}
+             {% if new %}
+                <label for="">New password</label>
+                <input type="password" name="npasw" id=""> <br><br>
+
+                <label for="">Confim password</label>
+                <input type="password" name="cpasw" id=""> <br><br>
+            {% else %}
+                <label for="">Old password</label>
+                <input type="password" name="opasw" id=""> <br><br>
+            {% endif %}
+
+            <button type="submit">Reset</button>
+        </form>
+    </center>
+{% endblock %}
