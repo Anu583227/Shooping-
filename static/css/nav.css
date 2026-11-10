@@ -5,12 +5,14 @@
 }
 .con{
     display: flex;
-    background: seagreen;
-    height: 40px;
+    background: #111111;
+    height: 50px;
     
     .logo{
         width: 30%;
         align-items: center;
+        color: #D99A75;
+        
         
     }
     .links{
@@ -21,7 +23,15 @@
 
         a{
             text-decoration: none;
-            color: red;
+            color: #F5F0EB;
+        }
+        a:hover{
+            color: #D99A75;
         }
     }
+}
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #F5EBDD;
 }
