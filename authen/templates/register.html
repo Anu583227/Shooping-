@@ -1,0 +1,32 @@
+{% extends 'main.html' %}
+
+{% block con %}
+    <center>
+        <h1>This is Register page</h1>
+        
+        <form action="" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <label for="">Username : </label>
+            <input type="text" name="uname" id=""> <br><br>
+
+            <label for="">Firstname : </label>
+            <input type="text" name="fname" id=""> <br><br>
+
+            <label for="">Lastname : </label>
+            <input type="text" name="lname" id=""> <br><br>
+
+            <label for="">Email : </label>
+            <input type="text" name="email" id=""> <br><br>
+
+            <label for="">Password : </label>
+            <input type="text" name="pasw" id=""> <br><br>
+
+            <label for="">Profile Image</label>
+            <input type="file" name="pic" id=""> <br><br>
+
+            <button type="submit">Submit</button>
+
+            
+        </form>
+    </center>
+{% endblock %}

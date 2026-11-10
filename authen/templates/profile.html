@@ -1,0 +1,18 @@
+{% extends 'main.html' %}
+
+{% block con %}
+    <center> <br>
+{% for i in data.profilemodel_set.all %}
+    <img src="{{ i.profile_img.url }}" style="width: 120px; height: 120px; border-radius: 50%;">
+{% endfor %}
+<h1>This is profile page</h1>
+<p>Username: {{ data.username }}</p>
+<p>First Name: {{ data.first_name }}</p>
+<p>Last Name: {{ data.last_name }}</p>
+<p>Email: {{ data.email }}</p>
+
+<a href="{% url 'update' %}">Update</a>
+
+
+    </center>
+{% endblock %}

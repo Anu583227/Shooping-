@@ -1,0 +1,29 @@
+{% extends 'main.html' %}
+
+{% block con %}
+    <center>
+        <h1>Update page</h1>
+         <form action="" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <label for="">Username : </label>
+            <input type="text" name="uname" id value="{{data.username}}" ><br><br>
+
+            <label for="">Firstname : </label>
+            <input type="text" name="fname" id="" value="{{data.first_name}}"> <br><br>
+
+            <label for="">Lastname : </label>
+            <input type="text" name="lname" id="" value="{{data.last_name}}"> <br><br>
+
+            <label for="">Email : </label>
+            <input type="text" name="email" id="" value="{{data.email}}"> <br><br>
+
+
+            <label for="">Profile Image</label>
+            <input type="file" name="pic" id=""> <br><br>
+
+            <button type="submit">Submit</button>
+
+            
+        </form>
+    </center>
+{% endblock %}

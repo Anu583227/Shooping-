@@ -1,0 +1,27 @@
+*{
+    padding: 0%;
+    margin: 0%;
+    box-sizing: border-box;
+}
+.con{
+    display: flex;
+    background: seagreen;
+    height: 40px;
+    
+    .logo{
+        width: 30%;
+        align-items: center;
+        
+    }
+    .links{
+        width: 70%;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+
+        a{
+            text-decoration: none;
+            color: red;
+        }
+    }
+}
