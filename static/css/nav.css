@@ -5,13 +5,14 @@
 }
 .con{
     display: flex;
-    background: #111111;
+    background: #FFFFFF;
     height: 50px;
     
     .logo{
         width: 30%;
         align-items: center;
-        color: #D99A75;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        color: #252525;
         
         
     }
@@ -23,15 +24,19 @@
 
         a{
             text-decoration: none;
-            color: #F5F0EB;
+            color: #252525;
         }
         a:hover{
             color: #D99A75;
+        }
+        .foo{
+            background-color: #D99A75;
+            border-radius: 60px;
         }
     }
 }
 body {
     margin: 0;
     padding: 0;
-    background-color: #EAC5CC;
+    background-color: #FFFFFF;
 }

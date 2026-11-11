@@ -2,6 +2,16 @@
 {% load static %}
 
 {% block con %}
+<div class="cate">
+<form action="" method="GET">
+   {% for i in category %}
+      <input type="submit" value="{{i}}" name="cat">
+   {% endfor %}
+   <a href="{% url 'home' %}">All poduct</a>
+</form>
+</div>
+
+
    <center>
      {% if messages %}
             {% for i in messages %}
@@ -21,7 +31,7 @@
       <p>{{i.quntity}} </p><br>
       <p>{{i.is_delete}} </p><br>
       <a href="">Add to Cart</a> 
-      <a href="">View Details</a>
+      <a href="{% url 'read' i.id %}">View Details</a>
        </div>
     {% endfor %}
    

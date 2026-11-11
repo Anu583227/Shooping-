@@ -4,6 +4,12 @@
             <h1>Shop</h1>
         </div>
         <div class="links">
+            <div class="foo">
+             <form action="">
+                <input type="search" name="name" id="search" placeholder="Search Here">
+                <button type="submit">Search</button>
+            </form>
+            </div>
             {% if new %}
             
             <a href="{% url 'register' %}">Register</a>
@@ -16,6 +22,7 @@
             <a href="">Cart</a>
             <a href="{% url 'logout_' %}">Logout</a>
             {% endif %}
+           
             <a href="{% url 'about' %}">About</a>
         </div>
     </div>

@@ -19,3 +19,16 @@
     border-radius: 20px;
     border-color: black;
 }
+
+.cate{
+    display: flex;
+    background: #FFFFFF;
+    height: 40px;
+    align-items: center;
+    justify-content: space-evenly;
+    gap: 20px;
+    a{
+        color: red;
+        text-decoration: none;
+    }
+}

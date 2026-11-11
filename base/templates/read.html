@@ -1,0 +1,22 @@
+{% extends 'main.html' %}
+{% block con %}
+{{category}}
+    <center>
+        <h1>This is read page</h1>
+        <img src="{{data.pimg.url}}" alt="" style="width: 200px; height: 200px;">
+        <p>{{data.pname}}</p>
+        <p>{{data.price}}</p>
+        <p>{{data.pdesc}}</p>
+        <p>{{data.quntity}}</p>
+        <a href="">Add to cart</a>
+        <a href="{% url 'home' %}">Back</a> <br>  <hr> <br>
+        {% for i in cate %}
+            <img src="{{i.pimg.url}}" alt="" style="width: 200px; height: 200px;">
+            <p>{{i.pname}}</p>
+            <p>{{i.price}}</p>
+            <p>{{i.pdesc}}</p>
+            <p>{{i.quntity}}</p> <br> <hr> <br>
+        {% endfor %}
+
+    </center>
+{% endblock %}
