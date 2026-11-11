@@ -1,9 +1,15 @@
-*{
-    margin: 0%;
-    padding: 0%;
-    box-sizing: border-box;
+.conn {
+    display: grid !important;
+    grid-template-columns: auto auto auto;
+    gap: 20px;
+    padding: 20px;
+    width: 100%;
 }
-.conn{
-    display: grid;
-    grid-template-columns: auto auto ;
+
+.items {
+    border: 1px solid gray;
+    padding: 15px;
+    text-align: center;
+    border-radius: 10px;
+    min-width: 0;
 }

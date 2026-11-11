@@ -9,19 +9,22 @@
             {% endfor %}
     {% endif %}
     <h1>This is home page</h1>
-    {% for i in all_product %}
+   
     <div class="conn">
-      <div class="items">
+      
+    {% for i in all_product %}
+    <div class="items">
     <img src="{{i.pimg.url}}" alt="" style="width: 150px;height: 150px;"> <br>
-      {{i.pname}} <br>
-      {{i.price}} <br>
-      {{i.pdesc}} <br>
-      {{i.quntity}} <br>
-      {{i.is_delete}} <br>
+      <p>{{i.pname}}</p> <br>
+      <p>{{i.price}} </p><br>
+      <p>{{i.pdesc}} </p><br>
+      <p>{{i.quntity}} </p><br>
+      <p>{{i.is_delete}} </p><br>
       <a href="">Add to Cart</a> 
-      <a href="">View Details</a><hr><br>
+      <a href="">View Details</a>
+       </div>
     {% endfor %}
-    </div>
+   
     </div>
    </center>
 {% endblock %}
