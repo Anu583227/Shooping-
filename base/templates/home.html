@@ -1,4 +1,5 @@
 {% extends 'main.html' %}
+{% load static %}
 
 {% block con %}
    <center>
@@ -8,5 +9,23 @@
             {% endfor %}
     {% endif %}
     <h1>This is home page</h1>
+    {% for i in all_product %}
+    <div class="conn">
+      <div class="items">
+    <img src="{{i.pimg.url}}" alt="" style="width: 150px;height: 150px;"> <br>
+      {{i.pname}} <br>
+      {{i.price}} <br>
+      {{i.pdesc}} <br>
+      {{i.quntity}} <br>
+      {{i.is_delete}} <br>
+      <a href="">Add to Cart</a> 
+      <a href="">View Details</a><hr><br>
+    {% endfor %}
+    </div>
+    </div>
    </center>
+{% endblock %}
+
+{% block css %}
+   <link rel="stylesheet" href="{% static 'css/home.css' %}">
 {% endblock %}

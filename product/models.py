@@ -19,3 +19,5 @@ class ProductModel(models.Model):
     create_at=models.DateTimeField(auto_now_add=True)
     is_delete=models.BooleanField(False)
     is_availble=models.BooleanField(True)
+    tranding=models.BooleanField(False,null=True)
+    offer=models.BooleanField(False ,null=True)
