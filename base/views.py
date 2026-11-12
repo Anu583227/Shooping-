@@ -1,10 +1,15 @@
 from django.shortcuts import render
 from product.models import ProductModel,CategoryModel
 from django.contrib import messages
+from authen.views import pro
 
 # Create your views here.
 
 def home(request):
+    if request.user.is_authenticated:
+        profile=pro(request)
+    else:
+        profile=False
     all_product=ProductModel.objects.filter(is_delete=False,is_availble=True).order_by('?')
     category=[]
     # category=CategoryModel.objects.filter(cname=id)
@@ -24,23 +29,26 @@ def home(request):
 
         if not all_product:
             messages.error(request, 'Product not found')
+    elif 'tread' in request.GET:
+        all_product=ProductModel.objects.filter(is_delete=False,is_availble=True,tranding=True)
+        messages.error(request,'Not found')
 
     else:
         all_product=ProductModel.objects.filter(is_delete=False,is_availble=True).order_by('?')
 
     print(category)
     # print(all_product)
-    return render(request,'home.html',{'all_product':all_product,'category':category})
+    return render(request,'home.html',{'all_product':all_product,'category':category,'old':True,'new':True,'profile':profile})
 
 def read(request,pk):
     data=ProductModel.objects.get(id=pk)
     cate=ProductModel.objects.filter(category=data.category).exclude(id=pk).order_by('?')[:3]
     print(cate)
     print(data)
-    return render(request,'read.html',{'data':data,'cate':cate})
+    return render(request,'read.html',{'data':data,'cate':cate,})
 
 def about(request):
-    return render(request,'about.html')
+    return render(request,'about.html',{'new':True})
 
 
 

@@ -1,5 +1,5 @@
 .conn {
-    display: grid !important;
+    display: grid ;
     grid-template-columns: auto auto auto;
     gap: 20px;
     padding: 20px;
@@ -22,11 +22,10 @@
 
 .cate{
     display: flex;
-    background: #FFFFFF;
+    background: wheat;
     height: 40px;
     align-items: center;
     justify-content: space-evenly;
-    gap: 20px;
     a{
         color: red;
         text-decoration: none;

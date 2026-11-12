@@ -8,7 +8,7 @@ from django.contrib import messages
 # Create your views here.
 
 def pro(request):
-    profile = get_object_or_404(ProfileModel,user_id = request.user)
+    profile = get_object_or_404(ProfileModel,user = request.user)
     return profile
 
 def login_(request):
@@ -61,7 +61,7 @@ def logout_(request):
 @login_required
 def profile(request):
     data = request.user
-    return render(request, 'profile.html', {'data': data,'new':True})
+    return render(request, 'profile.html', {'data': data,'new':True,'profile':profile})
 
 @login_required
 def update(request):
@@ -94,24 +94,6 @@ def update(request):
         'new':True
     })
 
-# def forgot(request):
-#     if request.method=='POST':
-#         if 'uname' in request.POST:
-#             uname=request.POST['uname']
-#             if uname:
-#                 u=User.objects.get(username=uname)
-#                 return render(request,'forgot.html')
-#             else:
-#                 messages.error(request,'No user found')
-#                 return redirect('login_')
-#         if 'npasw' in request.POST:
-#             npasw=request.POST['npasw']
-#             u=User.objects.get(username=uname)
-#             u.set_password(npasw)
-#             u.save()
-#             return redirect('login_')
-            
-#     return render(request,'forgot.html')
 
 def forgot(request):
     if request.method=='POST':
@@ -155,7 +137,7 @@ def reset(request):
                 user.set_password(npasw)
                 user.save()
                 return redirect('login_')
-    return render(request,'reset.html')
+    return render(request,'reset.html',{'new':True})
 
 
 
