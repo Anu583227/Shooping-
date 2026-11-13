@@ -19,8 +19,10 @@ from django.urls import path,include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('base/',include('base.urls')),
-    path('',include('authen.urls'))
+    path('',include('base.urls')),
+    path('authen/',include('authen.urls')),
+    path('carts/',include('cart.urls')),
+    path('order/',include('order.urls'))
 ]
 
 from django.conf.urls.static import static

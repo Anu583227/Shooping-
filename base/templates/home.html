@@ -21,7 +21,13 @@
             {% endfor %}
     {% endif %}
     <h1>This is home page</h1>
-   
+   {% if no_product %}
+      <h1>No Product</h1>
+   {% endif %}
+
+   {% if trend_msg %}
+      <h1>No Treading Product</h1>
+   {% endif %}
     <div class="conn">
       
     {% for i in all_product %}
@@ -32,7 +38,7 @@
       <p>{{i.pdesc}} </p><br>
       <p>{{i.quntity}} </p><br>
    
-      <a href="">Add to Cart</a> 
+      <a href="{% url 'add_to_cart' i.id %}">Add to Cart</a> 
       <a href="{% url 'read' i.id %}">View Details</a>
        </div>
     {% endfor %}

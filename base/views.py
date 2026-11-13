@@ -6,6 +6,8 @@ from authen.views import pro
 # Create your views here.
 
 def home(request):
+    trend_msg=False
+    no_product=False
     if request.user.is_authenticated:
         profile=pro(request)
     else:
@@ -31,14 +33,20 @@ def home(request):
             messages.error(request, 'Product not found')
     elif 'tread' in request.GET:
         all_product=ProductModel.objects.filter(is_delete=False,is_availble=True,tranding=True)
-        messages.error(request,'Not found')
+        if all_product.count() ==0:
+            trend_msg=True
+            no_product=True
+    elif 'offer' in request.GET:
+        all_product=ProductModel.objects.filter(is_delete=False,is_availble=True,offer=True)
+        if all_product.count()==0:
+            messages.error(request,'No Offer')
 
     else:
         all_product=ProductModel.objects.filter(is_delete=False,is_availble=True).order_by('?')
 
     print(category)
     # print(all_product)
-    return render(request,'home.html',{'all_product':all_product,'category':category,'old':True,'new':True,'profile':profile})
+    return render(request,'home.html',{'all_product':all_product,'category':category,'old':True,'new':True,'profile':profile,'trend_msg':trend_msg,'no_product':no_product})
 
 def read(request,pk):
     data=ProductModel.objects.get(id=pk)

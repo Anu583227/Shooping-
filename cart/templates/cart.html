@@ -1,0 +1,35 @@
+{% extends 'main.html' %}
+
+{% block con %}
+    <center>
+        <h1>This is cart</h1>
+        <table border="2px" style="text-align: center;">
+            <tr>
+                <th>SI NO</th>
+                <th>Product Image</th>
+                <th>Product Name</th>
+                <th>Product Price</th>
+                <th>Product Quntity</th>
+                <th>Actions</th>
+                <th>Total Price</th>
+                <th>Remove</th>
+            </tr>
+            {% for i in cart_item %}
+            <tr>
+                <td>{{forloop.counter }}</td>
+                <td><img src="{{i.prduct.pimg.url}}" alt="" style="height: 60px;width: 60px; "></td>
+                <td>{{i.prduct.pname}} <a href="{% url 'read' i.prduct.id %}">View More</a></td>
+                <td>{{i.prduct.price}}</td>
+                <td>{{i.product_count}}</td>
+                <td><a href="{% url 'minus' i.id %}">-</a> <a href="{% url 'plus' i.id %}">+</a></td>
+                <td>{{i.total_price}}</td>
+                 <td><a href="{% url 'remove' i.id %}">Remove</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+        <br>
+     <h1>Total Price : {{TA}}</h1>
+     <a href="{% url 'checkout' %}">Check Out</a>
+
+    </center>
+{% endblock %}
