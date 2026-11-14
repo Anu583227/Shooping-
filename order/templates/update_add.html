@@ -1,0 +1,12 @@
+{% extends 'main.html' %}
+
+{% block con %}
+    <center>
+        <h1>This is add address</h1>
+        <form action="" method="POST">
+            {% csrf_token %}
+           {{form.as_p}}
+            <button type="submit">Update</button>
+        </form>
+    </center>
+{% endblock %}

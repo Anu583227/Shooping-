@@ -1,5 +1,35 @@
 {% extends 'main.html' %}
 
 {% block con %}
-    <h1>This is check out page</h1>
+    <center>
+        <h1>This is check out page</h1>
+        <a href="{% url 'address' %}">Add Address</a> <br>
+      
+<br>
+        <form action="" method="POST">
+            {% csrf_token %}
+            {% for i in addres %}
+            <br><input type="radio" name="add" id="" value="{{i.id}}"> <br>
+            Full Name : {{i.fullname}} <br>
+            Mobile : {{i.mobile}} <br>
+            Address : {{i.addres_line}} <br>
+            City : {{i.city}} <br>
+            State : {{i.state}} <br>
+            Pincode : {{i.pincode}} <br>
+            Dafault : {% if i.is_default %}
+                <h2>👍👍</h2>
+            {% else %}
+                <h2>👎</h2>
+            {% endif %} <br> <br>
+        
+        {% endfor %}
+         {% for i in cart %}
+            <img src="{{i.prduct.pimg.url}}" alt="" style="height: 50px; width: 50px;"> <br>
+            {{i.prduct.pname}} <br>
+            {{i.prduct.price}} * {{i.product_count}} = {{i.total_price}}  <br>
+        {% endfor %} <br>
+        <h1>Grand Total {{grand_total}}</h1>
+        <button type="submit">Place Order</button> 
+        </form>
+    </center>
 {% endblock %}

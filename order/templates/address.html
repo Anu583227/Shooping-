@@ -1,0 +1,24 @@
+{% extends 'main.html' %}
+
+{% block con %}
+    <center>
+        <h1>This is adress page</h1>
+        <a href="{% url 'add_address' %}">Add Address</a> <br> <br>
+        {% for i in addresses %}
+            Full Name : {{i.fullname}} <br>
+            Mobile : {{i.mobile}} <br>
+            Address : {{i.addres_line}} <br>
+            City : {{i.city}} <br>
+            State : {{i.state}} <br>
+            Pincode : {{i.pincode}} <br>
+            Dafault : {% if i.is_default %}
+                <h2>👍👍</h2>
+            {% else %}
+                <h2>👎</h2>
+            {% endif %}
+            <a href="{% url 'update_add' i.id %}">Update Address</a>
+            <a href="{% url 'delete_address' i.id %}">Delete Address</a>
+        {% endfor %}
+        
+    </center>
+{% endblock %}
